@@ -4,7 +4,7 @@
 
 from uuid import uuid4
 from datetime import datetime
-
+from models import FileStorage
 
 class BaseModel:
     '''base model'''
@@ -22,10 +22,14 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            FileStorage().new(self)
     
     def save(self):
         '''save'''
+        from models import FileStorage
+
         self.updated_at = datetime.now()
+        FileStorage().save()
     
     def to_dict(self):
         '''to dict'''
