@@ -31,15 +31,52 @@ class HBNBCommand(cmd.Cmd):
                     print('** instance id missing **')
                 else:
                     id = words[1]
-                    model_class = globals()[class_name]
-                    obj = None
-                    if id in model_class.globals()[id]:
-                        obj = model_class.globals()[id]
-                    if obj is not None:
-                        print(obj)
+                    model_class = globals().get(class_name)
+                    if model_class:
+                        if hasattr(model_class, 'instances') and id in model_class.instances:
+                            obj = model_class.instances[id]
+                            print(obj)
+                        else:
+                            print('** no instance found **')
                     else:
-                        print('** no instance found **')
-                    
+                        print('** class doesn\'t exist **')
+            except KeyError:
+                print("** class doesn't exist **")
+
+    def do_destroy(self, line):
+        '''Deletes an instance based on the class name and id'''
+        if not line:
+            print('** class name missing **')
+        else:
+            try:
+                words = line.split()
+                class_name = words[0]
+                if len(words) < 2:
+                    print('** instance id missing **')
+                else:
+                    id = words[1]
+                    model_class = globals()[class_name]
+                    del model_class.globals()[id]
+                    model_class.save()
+            except KeyError:
+                print("** class doesn't exist **")
+            except IndexError:
+                print("** instance id missing **")
+
+    def do_all(self, line):
+        '''Prints all string representation of all instances based or not on the class name'''
+        if not line:
+            print('** class name missing **')
+        else:
+            try:
+                words = line.split()
+                class_name = words[0]
+                model_class = globals()[class_name]
+                if len(words) < 2:
+                    for key, value in model_class.instances.items():
+                        print(value)
+                else:
+                    print("** class doesn't exist **")
             except KeyError:
                 print("** class doesn't exist **")
 
