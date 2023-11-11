@@ -26,6 +26,11 @@ class BaseModel:
             self.updated_at = datetime.now()
         storage.new(self)
 
+    def __str__(self):
+        """__str__"""
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
+    
     def save(self):
         """save"""
         self.updated_at = datetime.now()
@@ -41,8 +46,3 @@ class BaseModel:
             else:
                 new_dict[key] = val
         return new_dict
-
-    def __str__(self):
-        """__str__"""
-        return "[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__)
