@@ -4,6 +4,7 @@
 
 from json import dump
 from json import load
+from models.user import User
 
 
 class FileStorage:
