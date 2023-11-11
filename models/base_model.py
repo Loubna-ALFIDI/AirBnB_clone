@@ -9,7 +9,9 @@ from models import storage
 
 
 class BaseModel:
-    """BaseModel"""
+    """
+    BaseModel class
+    """
     def __init__(self, *args, **kwargs):
         """
         INIT
