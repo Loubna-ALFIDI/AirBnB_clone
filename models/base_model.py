@@ -3,9 +3,9 @@
 Usage:
 python3 models/base_model.py
 """
-from uuid import uuid4
+import uuid
 from datetime import datetime
-from models import storage
+import models
 
 
 class BaseModel:
@@ -33,10 +33,10 @@ class BaseModel:
             self.created_at = datetime.strptime(self.created_at, time_format)
             self.updated_at = datetime.strptime(self.updated_at, time_format)
         else:
-            self.id = str(uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-        storage.new(self)
+        models.storage.new(self)
 
     def __str__(self):
         """
@@ -54,7 +54,7 @@ class BaseModel:
         Return: None
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """
