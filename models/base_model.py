@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""Base Model"""
-
-
+"""Base Model
+Usage:
+python3 models/base_model.py
+"""
 from uuid import uuid4
 from datetime import datetime
 from models import FileStorage
