@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     '''HBNBCommand'''
+    prompt = "(hbnb) "
     def do_create(self, line):
         '''Create command to create a new instance of BaseModel'''
         if not line:
@@ -65,20 +66,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         '''Prints all string representation of all instances based or not on the class name'''
-        if not line:
-            print('** class name missing **')
-        else:
-            try:
-                words = line.split()
-                class_name = words[0]
-                model_class = globals()[class_name]
-                if len(words) < 2:
-                    for key, value in model_class.instances.items():
-                        print(value)
-                else:
-                    print("** class doesn't exist **")
-            except KeyError:
-                print("** class doesn't exist **")
+        
 
     def do_quit(self, line):
         '''Quit command to exit the program'''
