@@ -11,7 +11,18 @@ from models import storage
 class BaseModel:
     """BaseModel"""
     def __init__(self, *args, **kwargs):
-        """init"""
+        """
+        INIT
+
+        Args:
+
+        args: list
+
+        kwargs: dict
+
+        Return: None
+
+        """
         if kwargs:
             del kwargs['__class__']
             for key, val in kwargs.items():
@@ -27,17 +38,36 @@ class BaseModel:
         storage.new(self)
 
     def __str__(self):
-        """__str__"""
+        """
+        STR
+
+        Args:
+
+        Return: str
+        """
         return "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
     
     def save(self):
-        """save"""
+        """
+        save
+
+        Args:
+
+        Return: None
+        """
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """to_dict"""
+        """
+        to_dict
+
+        Args:
+
+        Return: dict
+
+        """
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
         for key, val in self.__dict__.items():
