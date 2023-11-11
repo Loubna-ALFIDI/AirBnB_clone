@@ -41,8 +41,6 @@ class BaseModel:
         """
         STR
 
-        Args:
-
         Return: str
         """
         return "[{}] ({}) {}".format(
@@ -52,8 +50,6 @@ class BaseModel:
         """
         save
 
-        Args:
-
         Return: None
         """
         self.updated_at = datetime.now()
@@ -62,8 +58,6 @@ class BaseModel:
     def to_dict(self):
         """
         to_dict
-
-        Args:
 
         Return: dict
 
