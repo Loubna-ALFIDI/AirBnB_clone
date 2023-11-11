@@ -5,6 +5,7 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     '''HBNBCommand'''
     prompt = "(hbnb) "
@@ -30,7 +31,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, line):
-        '''Prints the string representation of an instance based on the class name and id'''
+        '''Prints the string representation of an instance
+          based on the class name and id'''
         if not line:
             print('** class name missing **')
             return
@@ -54,7 +56,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         except Exception:
             pass
-
 
     def do_destroy(self, line):
         '''Deletes an instance based on the class name and id'''
@@ -86,7 +87,8 @@ class HBNBCommand(cmd.Cmd):
             pass
 
     def do_all(self, line):
-        '''Prints all string representation of all instances based or not on the class name'''
+        '''Prints all string representation of all instances based or
+          not on the class name'''
         words = line.split()
         if len(words) > 0:
             class_name = words[0]
@@ -103,9 +105,9 @@ class HBNBCommand(cmd.Cmd):
                 all_list.append(val.__str__())
         print(all_list)
 
-
     def do_update(self, line):
-        '''Updates an instance based on the class name and id by adding or updating attribute'''
+        '''Updates an instance based on the class name and
+          id by adding or updating attribute'''
         if not line:
             print('** class name missing **')
             return
@@ -133,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print('** value missing **')
                 return
-        if len(words) ==4:
+        if len(words) == 4:
             dictobj = storage.all()
             obj = dictobj[show]
             if words[2] in obj.__class__.__dict__.keys():
@@ -145,18 +147,17 @@ class HBNBCommand(cmd.Cmd):
             obj = storage.all()[show]
             for k, v in eval(words[2]).items():
                 if (k in obj.__class__.__dict__.keys()) and \
-                    (type(obj.__class__.__dict__[k]) in {str, int, float}):
+                     (type(obj.__class__.__dict__[k]) in {str, int, float}):
                     valtype = type(obj.__class__.__dict__[k])
                     obj.__dict__[k] = valtype(v)
                 else:
                     obj.__dict__[k] = v
         storage.save()
-                
 
     def do_quit(self, line):
         '''Quit command to exit the program'''
         return True
-    
+
     def do_EOF(self, line):
         '''Exit the program'''
         print("")
