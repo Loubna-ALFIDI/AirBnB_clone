@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''FileStorage'''
+"""FileStorage"""
 
 
 from json import dump
@@ -7,21 +7,21 @@ from json import load
 
 
 class FileStorage:
-    '''FileStorage'''
+    """FileStorage"""
     __file_path = 'file.json'
     __objects = {}
 
     def all(self):
-        '''all'''
+        """all"""
         return self.__objects
 
     def new(self, obj):
-        '''new'''
+        """new"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
-        '''save'''
+        """save"""
         dobj = {}
         for key, val in self.__objects.items():
             dobj[key] = val.to_dict()
@@ -29,7 +29,7 @@ class FileStorage:
             dump(dobj, jsonF)
 
     def reload(self):
-        '''reload'''
+        """reload"""
         from models.base_model import BaseModel
 
         definclass = {'BaseModel': BaseModel}
