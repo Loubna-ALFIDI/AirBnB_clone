@@ -7,6 +7,7 @@ from datetime import datetime
 from models import FileStorage
 from models import storage
 
+
 class BaseModel:
     '''base model'''
     def __init__(self, *args, **kwargs):
@@ -24,12 +25,12 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             FileStorage().new(self)
-    
+
     def save(self):
         '''save'''
         self.updated_at = datetime.now()
         storage.save()
-    
+
     def to_dict(self):
         '''to dict'''
         new_dict = self.__dict__.copy()
@@ -40,7 +41,8 @@ class BaseModel:
             else:
                 new_dict[key] = val
         return new_dict
-    
+
     def __str__(self):
         '''str'''
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
