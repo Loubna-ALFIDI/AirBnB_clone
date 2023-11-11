@@ -14,3 +14,5 @@ class TestBaseModel(unittest.TestCase):
         """test id"""
         base = BaseModel()
         self.assertIsInstance(base.id, str)
+        self.assertEqual(len(base.id), 36)
+        
