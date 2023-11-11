@@ -12,18 +12,18 @@ class BaseModel:
     """BaseModel"""
     def __init__(self, *args, **kwargs):
         """init"""
+        timeformat = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             del kwargs['__class__']
             for key, val in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
+                if key != "__class__":
                     setattr(self, key, val)
-                else:
-                    setattr(self, key, val)
+            self.created_at = datetime.strptime(self.created_at, timeformat)
+            self.updated_at = datetime.strptime(self.updated_at, timeformat)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
         storage.new(self)
 
     def save(self):
