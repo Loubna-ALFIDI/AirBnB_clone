@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''BaseModel'''
+"""Base Model"""
 
 
 from uuid import uuid4
@@ -9,9 +9,9 @@ from models import storage
 
 
 class BaseModel:
-    '''base model'''
+    """BaseModel"""
     def __init__(self, *args, **kwargs):
-        '''init'''
+        """init"""
         if kwargs:
             del kwargs['__class__']
             for key, val in kwargs.items():
@@ -27,12 +27,12 @@ class BaseModel:
             FileStorage().new(self)
 
     def save(self):
-        '''save'''
+        """save"""
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        '''to dict'''
+        """to_dict"""
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
         for key, val in self.__dict__.items():
@@ -43,6 +43,6 @@ class BaseModel:
         return new_dict
 
     def __str__(self):
-        '''str'''
+        """__str__"""
         return "[{}] ({}) {}".format(
             self.__class__.__name__, self.id, self.__dict__)
