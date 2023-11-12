@@ -5,7 +5,7 @@ python3 models/base_model.py
 """
 from uuid import uuid4
 from datetime import datetime
-from models import storage
+import models
 
 
 class BaseModel:
@@ -25,7 +25,7 @@ class BaseModel:
 
         """
         if kwargs:
-            del kwargs['__class__']
+            del kwargs["__class__"]
             for key, val in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
@@ -36,7 +36,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-        storage.new(self)
+        models.storage.new(self)
 
     def __str__(self):
         """
@@ -54,7 +54,7 @@ class BaseModel:
         Return: None
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """
