@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """place"""
+from models.base_model import BaseModel
 
 
-class Place:
+class Place(BaseModel):
     """
     place
     
