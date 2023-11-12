@@ -5,12 +5,26 @@
 from json import dump
 from json import load
 from models.user import User
+from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
     """FileStorage"""
     __file_path = 'file.json'
-    __objects = {}
+    __objects = {
+        'BaseModel': BaseModel,
+        'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review
+    }
 
     def all(self):
         """all"""
