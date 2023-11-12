@@ -38,5 +38,31 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(len(base1.id), 36)
         self.assertNotEqual(base1.id, base2.id)
 
+    def test_str(self):
+        """test str"""
+        self.assertEqual(str(self.mymodel), "[BaseModel] ({}) {}".format(
+            self.mymodel.id, self.mymodel.__dict__))
+
+    def test_todict(self):
+        """test todict"""
+        self.assertEqual(self.mymodel.to_dict(), self.my_model_json)
+    
+    def test_save(self):
+        """test save"""
+        self.mymodel.save()
+        self.assertNotEqual(self.mymodel.created_at, self.mymodel.updated_at)
+    
+    def test_created_at(self):
+        """test created_at"""
+        self.assertIsInstance(self.mymodel.created_at, self.type_1)
+    
+    def test_updated_at(self):
+        """test updated_at"""
+        self.assertIsInstance(self.mymodel.updated_at, self.type_1)
+
+    def tearDown(self):
+        """teardown the cases to test"""
+        pass
+
 if __name__ == '__main__':
     unittest.main()
