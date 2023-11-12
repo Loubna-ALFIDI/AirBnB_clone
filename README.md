@@ -10,7 +10,6 @@ Welcome to the AirBnB Clone Console! This is the first step towards building the
 * [4 Testing](#4-Testing)
 * [5 Usage](#5-Usage)
 * [6 Authors](#6-Authors)
-* [7 License](#7-license)
 
 # ``1-Introduction``
 Team project to build a clone of [AirBnB](https://www.airbnb.com/).
