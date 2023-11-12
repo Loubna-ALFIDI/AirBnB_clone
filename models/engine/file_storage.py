@@ -45,8 +45,8 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             try:
                 with open(self.__file_path, "r",
-                          encoding="utf-8") as data_file:
-                    json_data = load(data_file)
+                          encoding="utf-8") as jsonF:
+                    json_data = load(jsonF)
                     for key, value in json_data.items():
                         if '.' in key:
                             class_name, obj_id = key.split('.')
