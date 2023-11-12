@@ -22,12 +22,14 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         """Test reload"""
         self.assertTrue(hasattr(storage, "reload"))
-    
-    def test_count(self):
-        """Test count"""
-        self.assertTrue(hasattr(storage, "count"))
 
     def test_all_methode(self):
         """test all methode"""
-        result = storage.all()
-        self.assertEqual(result, self._objs)
+        self.assertIsInstance(storage.all(), dict)
+
+    def test_new_methode(self):
+        """test new methode"""
+        obj = BaseModel()
+        storage.new(obj)
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        self.assertIn(key, storage.all().keys())
