@@ -33,7 +33,10 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """Create command to create a new instance of BaseModel"""
+        """
+        Create command to create a new instance of BaseModel
+            Ex: $ create BaseModel
+        """
         if not line:
             print('** class name missing **')
             return
@@ -48,8 +51,11 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, line):
-        """Prints the string representation of an instance
-          based on the class name and id"""
+        """
+        Prints the string representation of an instance
+          based on the class name and id
+           Ex: $ show BaseModel 1234-1234-1234
+        """
         if not line:
             print('** class name missing **')
             return
@@ -75,7 +81,10 @@ class HBNBCommand(cmd.Cmd):
             pass
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id"""
+        """
+        Deletes an instance based on the class name and id
+         Ex: $ destroy BaseModel 1234-1234-1234
+        """
         if not line:
             print('** class name missing **')
             return
@@ -104,8 +113,11 @@ class HBNBCommand(cmd.Cmd):
             pass
 
     def do_all(self, line):
-        """Prints all string representation of all instances based or
-          not on the class name"""
+        """
+        Prints all string representation of all instances based or
+          not on the class name
+          $ all BaseModel or $ all
+        """
         words = line.split()
         if len(words) > 0:
             class_name = words[0]
@@ -123,8 +135,11 @@ class HBNBCommand(cmd.Cmd):
         print(all_list)
 
     def do_update(self, line):
-        """Updates an instance based on the class name and
-          id by adding or updating attribute"""
+        """
+        Updates an instance based on the class name and
+          id by adding or updating attribute
+           Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com"
+        """
         if not line:
             print('** class name missing **')
             return
@@ -173,9 +188,12 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
-    
+
     def do_count(self, line):
-        """Retrieves the number of instances of a class"""
+        """
+        Retrieves the number of instances of a class
+        Ex: $ count BaseModel or $ BaseModel.count()
+        """
         words = line.split()
         count = 0
         for key, val in storage.all().items():
