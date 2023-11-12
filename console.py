@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Console'''
+"""Console"""
 
 
 import cmd
@@ -7,8 +7,9 @@ from models.base_model import BaseModel
 from models import storage
 from models.user import User
 
+
 class HBNBCommand(cmd.Cmd):
-    '''HBNBCommand'''
+    """HBNBCommand"""
     prompt = "(hbnb) "
 
     def emptyline(self):
@@ -16,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        '''Create command to create a new instance of BaseModel'''
+        """Create command to create a new instance of BaseModel"""
         if not line:
             print('** class name missing **')
             return
@@ -32,8 +33,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, line):
-        '''Prints the string representation of an instance
-          based on the class name and id'''
+        """Prints the string representation of an instance
+          based on the class name and id"""
         if not line:
             print('** class name missing **')
             return
@@ -59,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
             pass
 
     def do_destroy(self, line):
-        '''Deletes an instance based on the class name and id'''
+        """Deletes an instance based on the class name and id"""
         if not line:
             print('** class name missing **')
             return
@@ -88,8 +89,8 @@ class HBNBCommand(cmd.Cmd):
             pass
 
     def do_all(self, line):
-        '''Prints all string representation of all instances based or
-          not on the class name'''
+        """Prints all string representation of all instances based or
+          not on the class name"""
         words = line.split()
         if len(words) > 0:
             class_name = words[0]
@@ -107,8 +108,8 @@ class HBNBCommand(cmd.Cmd):
         print(all_list)
 
     def do_update(self, line):
-        '''Updates an instance based on the class name and
-          id by adding or updating attribute'''
+        """Updates an instance based on the class name and
+          id by adding or updating attribute"""
         if not line:
             print('** class name missing **')
             return
@@ -156,11 +157,11 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_quit(self, line):
-        '''Quit command to exit the program'''
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, line):
-        '''Exit the program'''
+        """Exit the program"""
         print("")
         return True
 
