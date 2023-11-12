@@ -11,6 +11,14 @@ from models import storage
 class TestFileStorage(unittest.TestCase):
     """Unit tests for FileStorage"""
 
+    def setUp(self):
+        """Setting up the test cases"""
+        super().setUp()
+        self.file_path = storage._FileStorage__file_path
+        self.instance = BaseModel()
+        self._objs = storage._FileStorage__objects
+        self.keyname = "BaseModel." + self.instance.id
+
     def test_all(self):
         """Test all"""
         self.assertTrue(hasattr(storage, "all"))
@@ -25,7 +33,8 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all_methode(self):
         """test all methode"""
-        self.assertIsInstance(storage.all(), dict)
+        result = storage.all()
+        self.assertIsInstance(result, dict)
 
     def test_new_methode(self):
         """test new methode"""
@@ -33,3 +42,19 @@ class TestFileStorage(unittest.TestCase):
         storage.new(obj)
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.assertIn(key, storage.all().keys())
+
+    def test_save_method(self):
+        """Test the save() method"""
+        my_model = BaseModel()
+        my_model.name = "My_First_Model"
+        my_model.my_number = 89
+        storage.new(my_model)
+        storage.save()
+        with open(self.file_path, "r") as data_file:
+            saved_data = json.load(data_file)
+
+        expected_data = {}
+        for key, value in self._objs.items():
+            expected_data[key] = value.to_dict()
+
+        self.assertEqual(saved_data, expected_data)
