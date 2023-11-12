@@ -56,7 +56,7 @@ class TestBaseModel(unittest.TestCase):
         """test save"""
         self.mymodel.save()
         self.assertNotEqual(self.mymodel.created_at, self.mymodel.updated_at)
-    
+
     def test_created_at(self):
         """test created_at"""
         self.assertIsInstance(self.mymodel.created_at, self.type_1)
@@ -75,6 +75,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("id", basemodel.to_dict())
         self.assertIn("created_at", basemodel.to_dict())
         self.assertIn("updated_at", basemodel.to_dict())
+    
+    def tearDown(self):
+        """teardown"""
+        try:
+            os.remove("file.json")
+        except FileNotFoundError:
+            pass
 
 if __name__ == '__main__':
     unittest.main()
