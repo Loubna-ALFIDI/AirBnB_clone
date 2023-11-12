@@ -25,6 +25,11 @@ class TestBaseModel(unittest.TestCase):
     def test_instance_creation(self):
         """test instance creation"""
         self.assertIsInstance(self.mymodel, BaseModel)
+    
+    def test_new_attribute(self):
+        """test new attribute"""
+        self.assertEqual(self.mymodel.name, "My_First_Model")
+        self.assertEqual(self.mymodel.my_number, 89)
 
     def test_id(self):
         """test id"""
@@ -60,9 +65,16 @@ class TestBaseModel(unittest.TestCase):
         """test updated_at"""
         self.assertIsInstance(self.mymodel.updated_at, self.type_1)
 
-    def tearDown(self):
-        """teardown the cases to test"""
-        pass
+    def test_full_format(self):
+        """test output is correct"""
+        basemodel = BaseModel()
+        str_output = str(basemodel)
+        self.assertIn("[BaseModel]", str_output)
+        self.assertIn(basemodel.id, str_output)
+        self.assertIn(str(basemodel.__dict__), str_output)
+        self.assertIn("id", basemodel.to_dict())
+        self.assertIn("created_at", basemodel.to_dict())
+        self.assertIn("updated_at", basemodel.to_dict())
 
 if __name__ == '__main__':
     unittest.main()
