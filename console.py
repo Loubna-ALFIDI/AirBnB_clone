@@ -173,6 +173,14 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+    
+    def do_count(self, line):
+        """Retrieves the number of instances of a class"""
+        count = 0
+        for key, val in storage.all().items():
+            if line == val.__class__.__name__:
+                count += 1
+        print(count)
 
     def do_quit(self, line):
         """Quit command to exit the program"""
@@ -184,7 +192,8 @@ class HBNBCommand(cmd.Cmd):
             "all": self.do_all,
             "show": self.do_show,
             "destroy": self.do_destroy,
-            "update": self.do_update
+            "update": self.do_update,
+            "count": self.do_count
         }
 
         rslt = re.search(r"\.", line)
