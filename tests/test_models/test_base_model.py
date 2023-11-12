@@ -82,6 +82,13 @@ class TestBaseModel(unittest.TestCase):
             os.remove("file.json")
         except FileNotFoundError:
             pass
+    
+    def test_isoformat(self):
+        """test isoformat"""
+        self.assertEqual(self.my_model_json["updated_at"],
+                         self.mymodel.updated_at.isoformat())
+
+    
 
 if __name__ == '__main__':
     unittest.main()
