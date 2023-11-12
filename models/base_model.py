@@ -10,8 +10,7 @@ from models import storage
 
 class BaseModel:
     """
-    BaseModel class
-    """
+    BaseModel"""
     def __init__(self, *args, **kwargs):
         """
         INIT
@@ -25,12 +24,11 @@ class BaseModel:
         Return: None
 
         """
-        time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
-            del kwargs["__class__"]
+            del kwargs['__class__']
             for key, val in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    val = datetime.strptime(val, time_format)
+                    val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, key, val)
                 else:
                     setattr(self, key, val)
