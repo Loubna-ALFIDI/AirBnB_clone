@@ -33,7 +33,7 @@ class FileStorage:
         """reload"""
         from models.base_model import BaseModel
 
-        definclass = {'BaseModel': BaseModel}
+        definclass = {'BaseModel': BaseModel, 'User': User}
         try:
             with open(self.__file_path, 'r', encoding="utf-8") as jsonF:
                 dobj = load(jsonF)
