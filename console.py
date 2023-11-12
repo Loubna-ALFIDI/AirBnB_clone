@@ -17,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
 
-    valid_classes = {
+    __classes = {
         "BaseModel",
         "User",
         "State",
@@ -106,9 +106,6 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based or
           not on the class name"""
         words = line.split()
-        if words[0] not in self.valid_classes:
-            print("** class doesn't exist **")
-            return
         if len(words) > 0:
             class_name = words[0]
             try:
@@ -124,6 +121,21 @@ class HBNBCommand(cmd.Cmd):
                 all_list.append(val.__str__())
         print(all_list)
 
+    def do_count(self, line):
+        """Counts the number of instances of a class"""
+        words = line.split()
+        class_name = words[0]
+        try:
+            model_class = globals()[class_name]
+        except KeyError:
+            print("** class doesn't exist **")
+            return
+        count = 0
+        for key, val in storage.all().values():
+            if words[0] == val.__class__.__name__:
+                count += 1
+        print(count)
+
     def do_update(self, line):
         """Updates an instance based on the class name and
           id by adding or updating attribute"""
@@ -132,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if words[0] not in self.valid_classes:
+        if words[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         try:
