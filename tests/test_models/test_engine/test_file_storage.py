@@ -59,5 +59,6 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertEqual(saved_data, expected_data)
 
+
 if __name__ == "__main__":
     unittest.main()
