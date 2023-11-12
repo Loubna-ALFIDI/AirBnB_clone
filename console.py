@@ -17,15 +17,7 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
 
-    __classes = {
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Place",
-        "Amenity",
-        "Review"
-    }
+    valid_classes = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def emptyline(self):
         """Handles the emptylines."""
@@ -37,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
             return
         words = line.split()
-        if words[0] not in self.classes:
+        if words[0] not in self.valid_classes:
             print('** class doesn\'t exist **')
             return
         try:
@@ -57,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if class_name not in self.classes:
+        if class_name not in self.valid_classes:
             print("** class doesn't exist **")
             return
         try:
@@ -86,6 +78,9 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
+        if class_name not in self.valid_classes:
+            print("** class doesn't exist **")
+            return
         try:
             model_class = globals()[class_name]
         except KeyError:
@@ -112,6 +107,9 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based or
           not on the class name"""
         words = line.split()
+        if class_name not in self.valid_classes:
+            print("** class doesn't exist **")
+            return
         if len(words) > 0:
             class_name = words[0]
             try:
@@ -135,6 +133,9 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
+        if class_name not in self.valid_classes:
+            print("** class doesn't exist **")
+            return
         try:
             model_class = globals()[class_name]
         except KeyError:

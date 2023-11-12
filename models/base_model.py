@@ -63,8 +63,9 @@ class BaseModel:
         Return: dict
 
         """
-        new_dict = self.__dict__.copy()
-        new_dict['__class__'] = self.__class__.__name__
+        new_dict = {}
+        new_dict["__class__"] = self.__class__.__name__
+
         for key, val in self.__dict__.items():
             if isinstance(val, datetime):
                 new_dict[key] = val.isoformat()
