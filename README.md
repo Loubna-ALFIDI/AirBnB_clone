@@ -204,9 +204,5 @@ python3 -m unittest discover tests
 
 ## ``6-Authors``
 
--   [Soumia Ouzat](https://github.com/SouaOui)
--   [Mounssif Bouhlaoui](https://github.com/nuuxcode)
-
-## ``7- License``
-
-This project is licensed under the MIT License - see the [LICENSE](https://chat.openai.com/LICENSE) file for details.
+-   [Loubna ALFIDI](https://github.com/Loubna-ALFIDI)
+-   [Hicham FHAD](https://github.com/HichamLuffy)
