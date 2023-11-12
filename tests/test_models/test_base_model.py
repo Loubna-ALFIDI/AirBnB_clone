@@ -16,6 +16,11 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         """setup the cases to test"""
         self.mymodel = BaseModel()
+        self.mymodel.name = "My_First_Model"
+        self.mymodel.my_number = 89
+        self.id = self.mymodel.id
+        self.type_1 = datetime.datetime
+        self.my_model_json = self.mymodel.to_dict()
 
     def test_instance_creation(self):
         """test instance creation"""
