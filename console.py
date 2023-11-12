@@ -121,21 +121,6 @@ class HBNBCommand(cmd.Cmd):
                 all_list.append(val.__str__())
         print(all_list)
 
-    def do_count(self, line):
-        """Counts the number of instances of a class"""
-        words = line.split()
-        class_name = words[0]
-        try:
-            model_class = globals()[class_name]
-        except KeyError:
-            print("** class doesn't exist **")
-            return
-        count = 0
-        for key, val in storage.all().values():
-            if words[0] == val.__class__.__name__:
-                count += 1
-        print(count)
-
     def do_update(self, line):
         """Updates an instance based on the class name and
           id by adding or updating attribute"""
