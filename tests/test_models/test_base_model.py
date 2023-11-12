@@ -98,5 +98,21 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.mymodel.name, self.my_model_json["name"])
         self.assertEqual(self.mymodel.my_number, self.my_model_json["my_number"])
 
+    def test_two_saves(self):
+        """test two saves"""
+        self.mymodel.save()
+        self.mymodel.save()
+        self.assertNotEqual(self.mymodel.created_at, self.mymodel.updated_at)
+
+    def test_save_updated_at(self):
+        """test save updated at"""
+        self.mymodel.save()
+        self.assertNotEqual(self.mymodel.created_at, self.mymodel.updated_at)
+
+    def test_save_id(self):
+        """test save id"""
+        self.mymodel.save()
+        self.assertNotEqual(self.mymodel.id, self.mymodel.created_at)
+
 if __name__ == '__main__':
     unittest.main()
