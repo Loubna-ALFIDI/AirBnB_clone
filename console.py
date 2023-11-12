@@ -176,9 +176,10 @@ class HBNBCommand(cmd.Cmd):
     
     def do_count(self, line):
         """Retrieves the number of instances of a class"""
+        words = line.split()
         count = 0
         for key, val in storage.all().items():
-            if line == val.__class__.__name__:
+            if words[0] == val.__class__.__name__:
                 count += 1
         print(count)
 
