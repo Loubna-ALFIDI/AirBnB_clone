@@ -4,6 +4,7 @@
 
 from json import dump
 from json import load
+import os
 from models.user import User
 from models.base_model import BaseModel
 from models.state import State
@@ -13,8 +14,10 @@ from models.place import Place
 from models.review import Review
 
 
+
 class FileStorage:
     """FileStorage"""
+
     __file_path = 'file.json'
     __objects = {}
 
@@ -39,11 +42,17 @@ class FileStorage:
         """reload"""
         from models.base_model import BaseModel
 
-        definclass = {'BaseModel': BaseModel, 'User': User}
-        try:
-            with open(self.__file_path, 'r', encoding="utf-8") as jsonF:
-                dobj = load(jsonF)
-                for key, val in dobj.items():
-                    self.__objects[key] = definclass[val['__class__']](**val)
-        except FileNotFoundError:
-            pass
+        if os.path.exists(self.__file_path):
+            try:
+                with open(self.__file_path, "r",
+                          encoding="utf-8") as data_file:
+                    json_data = load(data_file)
+                    for key, value in json_data.items():
+                        if '.' in key:
+                            class_name, obj_id = key.split('.')
+                            class_obj = globals()[class_name]
+                            new_instance = class_obj(**value)
+                            self.new(new_instance)
+                            self.__objects[key] = new_instance
+            except FileNotFoundError:
+                pass

@@ -22,8 +22,8 @@ class HBNBCommand(cmd.Cmd):
         "User",
         "State",
         "City",
-        "Amenity",
         "Place",
+        "Amenity",
         "Review"
     }
 
@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if class_name not in HBNBCommand.valid_classes:
+        if words[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         try:
@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if class_name not in HBNBCommand.valid_classes:
+        if words[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         try:
@@ -115,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based or
           not on the class name"""
         words = line.split()
-        if class_name not in HBNBCommand.valid_classes:
+        if words[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         if len(words) > 0:
@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if class_name not in HBNBCommand.valid_classes:
+        if words[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
             return
         try:
