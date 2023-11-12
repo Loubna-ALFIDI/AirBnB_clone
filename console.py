@@ -17,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
 
-    classes = [
+    classes = {
         "BaseModel",
         "User",
         "State",
@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         "Place",
         "Amenity",
         "Review"
-    ]
+    }
 
     def emptyline(self):
         """Handles the emptylines."""
