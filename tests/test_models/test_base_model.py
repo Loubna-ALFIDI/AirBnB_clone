@@ -37,7 +37,7 @@ class TestBaseModel(unittest.TestCase):
     def test_id(self):
         """test id"""
         self.assertEqual(self.id, self.mymodel.id)
-    
+
     def test_unique_id(self):
         """test unique id"""
         base1 = BaseModel()
@@ -53,8 +53,14 @@ class TestBaseModel(unittest.TestCase):
 
     def test_todict(self):
         """test todict"""
-        self.assertEqual(self.mymodel.to_dict(), self.my_model_json)
-    
+        self.assertEqual(self.my_model_json, self.mymodel.to_dict())
+
+    def test_todict_correct_keys(self):
+        """test todict correct keys"""
+        key = ['id', 'created_at', 'updated_at', '__class__']
+        for k in key:
+            self.assertIn(k, self.my_model_json)
+
     def test_save(self):
         """test save"""
         self.mymodel.save()
@@ -106,8 +112,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_updated_at(self):
         """test save updated at"""
+        prev_updated_at = self.mymodel.updated_at
         self.mymodel.save()
-        self.assertNotEqual(self.mymodel.created_at, self.mymodel.updated_at)
+        self.assertNotEqual(prev_updated_at, self.mymodel.updated_at)
 
     def test_save_id(self):
         """test save id"""
