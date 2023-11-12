@@ -28,11 +28,15 @@ class TestBaseModel(unittest.TestCase):
 
     def test_id(self):
         """test id"""
+        self.assertEqual(self.id, self.mymodel.id)
+    
+    def test_unique_id(self):
+        """test unique id"""
         base1 = BaseModel()
         base2 = BaseModel()
         self.assertIsInstance(base1.id, str)
         self.assertEqual(len(base1.id), 36)
-        self.assertEqual(self.id, self.mymodel.id)
+        self.assertNotEqual(base1.id, base2.id)
 
 if __name__ == '__main__':
     unittest.main()
