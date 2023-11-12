@@ -37,9 +37,6 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
             return
         words = line.split()
-        if words[0] not in self.valid_classes:
-            print('** class doesn\'t exist **')
-            return
         try:
             class_name = globals()[words[0]]
             obj1 = class_name()
@@ -57,9 +54,6 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if words[0] not in self.valid_classes:
-            print("** class doesn't exist **")
-            return
         try:
             model_class = globals()[class_name]
         except KeyError:
@@ -86,12 +80,9 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
-        if words[0] not in self.valid_classes:
-            print("** class doesn't exist **")
-            return
         try:
             model_class = globals()[class_name]
-        except KeyError:
+        except Exception:
             print("** class doesn't exist **")
             return
         if len(words) < 2:
