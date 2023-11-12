@@ -32,6 +32,7 @@ class TestBaseModel(unittest.TestCase):
         base2 = BaseModel()
         self.assertIsInstance(base1.id, str)
         self.assertEqual(len(base1.id), 36)
+        self.assertEqual(self.id, self.mymodel.id)
 
 if __name__ == '__main__':
     unittest.main()
