@@ -58,3 +58,6 @@ class TestFileStorage(unittest.TestCase):
             expected_data[key] = value.to_dict()
 
         self.assertEqual(saved_data, expected_data)
+
+if __name__ == "__main__":
+    unittest.main()
