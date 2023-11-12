@@ -3,6 +3,7 @@
 
 
 import cmd
+import re
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -176,6 +177,28 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
+
+    def default(self, line):
+        """Default behavior for cmd module when input"""
+        commands = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "update": self.do_update
+        }
+
+        rslt = re.search(r"\.", line)
+        if rslt is not None:
+            args_list = [line[: rslt.span()[0]], line[rslt.span()[1]:]]
+            rslt = re.search(r"\((.*?)\)", args_list[1])
+            if rslt is not None:
+                cmd = [args_list[1][: rslt.span()[0]], rslt.group()[1:-1]]
+                if cmd[0] in commands.keys():
+                    call = "{} {}".format(
+                        args_list[0], cmd[1]
+                    )
+                    return commands[cmd[0]](call)
+        print("*** Unknown syntax: {}".format(line))
 
     def do_EOF(self, line):
         """Exit the program"""
