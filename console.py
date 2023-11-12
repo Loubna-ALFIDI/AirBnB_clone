@@ -17,7 +17,7 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
 
-    __classes = {
+    classes = {
         "BaseModel",
         "User",
         "State",
@@ -37,7 +37,9 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
             return
         words = line.split()
-
+        if words[0] not in self.classes:
+            print('** class doesn\'t exist **')
+            return
         try:
             class_name = globals()[words[0]]
             obj1 = class_name()
@@ -55,6 +57,9 @@ class HBNBCommand(cmd.Cmd):
             return
         words = line.split()
         class_name = words[0]
+        if class_name not in self.classes:
+            print("** class doesn't exist **")
+            return
         try:
             model_class = globals()[class_name]
         except KeyError:
