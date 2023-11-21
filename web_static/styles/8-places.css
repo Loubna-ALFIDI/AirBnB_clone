@@ -60,30 +60,17 @@
 
 .icon_group {
     background-image: url("../images/icon_group.png");
-    background-repeat: no-repeat;
-    background-position: top;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
 }
 
 .icon_bed {
     background-image: url("../images/icon_bed.png");
-    background-repeat: no-repeat;
-    background-position: top;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
 }
 
 .icon_bath {
     background-image: url("../images/icon_bath.png");
+}
+
+.icon_bath, .icon_bed, .icon_group{
     background-repeat: no-repeat;
     background-position: top;
     width: 100px;
